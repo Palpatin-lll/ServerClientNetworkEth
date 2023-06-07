@@ -1,0 +1,36 @@
+syntax = "proto3";
+// protoc -I api/proto --go_out=. --go-grpc_out=. api/proto/adder.proto
+option go_package = "pkg/api";
+
+package api;
+
+service Adder {
+    rpc NewConnect(NewConnRequest) returns (NewConnResponse) {}
+    rpc SendMessage(SendRequest) returns (SendResponse) {}
+    rpc Add(AddRequest) returns (AddResponse) {}
+}
+
+message AddRequest {
+    int32 x = 1;
+    int32 y = 2;
+}
+
+message AddResponse {
+    int32 result = 1;
+}
+
+message NewConnRequest {
+    string name = 1;
+}
+
+message NewConnResponse {
+    string result = 1;
+}
+
+message SendRequest {
+    string msg = 1;
+}
+
+message SendResponse {
+    string result = 1;
+}

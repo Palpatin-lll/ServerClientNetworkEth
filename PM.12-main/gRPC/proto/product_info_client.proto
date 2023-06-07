@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option go_package = "client/ecommerce";
+
+package ecommerce;
+
+service ProductInfo {
+    rpc addProduct(Product) returns (ProductID);
+    rpc getProduct(ProductID) returns (Product);
+}
+
+message Product {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    float price = 4;
+}
+
+message ProductID {
+    string value = 1;
+}
+
+// Генерация заглушки
+// protoc -I proto proto/product_info_client.proto --go-grpc_out=. --go_out=paths=source_relative:./client/ecommerce/
